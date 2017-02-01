@@ -21,7 +21,7 @@ public class GridFrame extends JFrame
 	private void setupFrame()
 	{
 		this.setContentPane(appPanel);
-		this.setTitle("");
+		this.setTitle("Chicken Noodle Soup");
 		this.setSize(new Dimension(1000, 700));
 		this.setVisible(true);
 		this.setResizable(false);
