@@ -12,13 +12,8 @@ public class GridPanel extends JPanel
 	private GridController baseController;
 	private SpringLayout baseLayout;
 	private JButton updateButton;
-	private JTextField rowField;
-	private JTextField columnField;
-	private JTextField inputField;
-	private JLabel inputLabel;
-	private JLabel rowLabel;
-	private JLabel columnLabel;
-	private JLabel title;
+	private JTextField rowField, columnField, inputField;
+	private JLabel inputLabel, rowLabel, columnLabel, title;
 	
 	private JTable gridTable;
 	private JScrollPane gridPane;
@@ -35,6 +30,7 @@ public class GridPanel extends JPanel
 		this.inputLabel = new JLabel("Input");
 		this.rowLabel = new JLabel("Row");
 		this.columnLabel = new JLabel("Col");
+		baseLayout.putConstraint(SpringLayout.NORTH, columnLabel, 50, SpringLayout.NORTH, rowLabel);
 		this.title = new JLabel(" ");
 		
 		setupTable();
@@ -49,6 +45,7 @@ public class GridPanel extends JPanel
 		gridTable = new JTable();
 		gridTable.setModel(data);
 		gridPane = new JScrollPane();
+		baseLayout.putConstraint(SpringLayout.NORTH, rowLabel, 35, SpringLayout.SOUTH, gridPane);
 		gridPane.setViewportView(gridTable);
 	}
 	
@@ -77,9 +74,7 @@ public class GridPanel extends JPanel
 		rowLabel.setForeground(Color.WHITE);
 		baseLayout.putConstraint(SpringLayout.WEST, rowField, 6, SpringLayout.EAST, rowLabel);
 		columnLabel.setForeground(Color.WHITE);
-		baseLayout.putConstraint(SpringLayout.NORTH, columnLabel, 542, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, columnField, -5, SpringLayout.NORTH, columnLabel);
-		baseLayout.putConstraint(SpringLayout.SOUTH, rowLabel, -25, SpringLayout.NORTH, columnLabel);
 		baseLayout.putConstraint(SpringLayout.NORTH, inputLabel, 5, SpringLayout.NORTH, rowField);
 		baseLayout.putConstraint(SpringLayout.EAST, inputLabel, -6, SpringLayout.WEST, inputField);
 		inputLabel.setForeground(Color.WHITE);
@@ -99,7 +94,8 @@ public class GridPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selection)
 			{
-				
+				baseController.updateChickenBroth(rowField.getText(), columnField.getText(), inputField.getText());
+				repaint();
 			}
 		});
 	}

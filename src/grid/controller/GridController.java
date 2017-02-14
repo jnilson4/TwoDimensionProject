@@ -42,4 +42,26 @@ public class GridController
 	{
 		return appFrame;
 	}
+	
+	public void updateChickenBroth(String row, String col, String value)
+	{
+		if(isValid(row) && isValid(col) && isValid(value))
+		{
+			grid[Integer.parseInt(row)][Integer.parseInt(col)].setChickenBrothLevel(Integer.parseInt(value));
+		}
+	}
+	
+	private boolean isValid(String temp)
+	{
+		try
+		{
+			Integer.parseInt(temp);
+			return true;
+		}
+		catch(NumberFormatException error)
+		{
+			JOptionPane.showMessageDialog(appFrame, "Use ints silly");
+			return false;
+		}
+	}
 }
